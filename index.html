@@ -1,78 +1,80 @@
-<html>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
+    <meta charset="UTF-8">
+    <title>Moja Strona z Muzyką</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            color: white;
+            font-family: sans-serif;
+            background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c6ff, #0072ff);
+            background-size: 300% 300%;
+            animation: move 5s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-<meta charest="UTF-8">
-<div class="center-text"></div>
+        @keyframes move {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        .buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        iframe {
+            width: 65%;
+            height: 90%;
+            border: none;
+            margin-top: 20px;
+        }
+    </style>
 </head>
-
-
 <body>
-  <div style="text-align: center">
 
+    <audio id="player" controls>
+        <source src="no lie.mp3" type="audio/mpeg">
+    </audio>
 
+    <div class="buttons">
+        <button type="button" onclick="playMusic()">▶️ Odtwórz</button>
+        <button type="button" onclick="pauseMusic()">⏸️ Pauza</button>
+        <button type="button" onclick="nextSong()">⏭️ Następna</button>
+    </div>
 
-<audio id="player" controls>
-    <source src="no lie.mp3" type="audio/mpeg">
-    <source src="Ramię w ramię.mp3" type="audio/mpeg">
-    <source src="Bad liar.mp3" type="audio/mpeg">
-    
-</audio>
+    <iframe src="https://iFranek18.github.io/Block/"></iframe>
 
-<br><br>
+    <script>
+        const songs = [
+            "no lie.mp3",
+            "Ramię w ramię.mp3",
+            "Bad liar.mp3"
+        ];
 
-<button onclick="playMusic()">▶️ Odtwórz</button>
-<button onclick="pauseMusic()">⏸️ Pauza</button>
-<button onclick="nextSong()">⏭️ Następna</button>
+        let i = 0;
+        const player = document.getElementById("player");
 
-<script>
-const songs = [
-    "no lie.mp3",
-    "ramię w ramię.mp3",
-    "Bad liar.mp3"
-];
+        function playMusic() {
+            player.play();
+        }
 
-let i = 0;
-const player = document.getElementById("player");
+        function pauseMusic() {
+            player.pause();
+        }
 
-function playMusic() {
-    player.play();
-}
+        function nextSong() {
+            i = (i + 1) % songs.length;
+            player.src = songs[i];
+            player.play();
+        }
+    </script>
 
-function pauseMusic() {
-    player.pause();
-}
-
-function nextSong() {
-    i = (i + 1) % songs.length;
-    player.src = songs[i];
-    player.play();
-}
-</script>
-
-<br><br><br><br><br><br><br><br>
-
-
-<iframe src="https:iFranek18.github.io/Block/" width="65%" height="90%"></iframe>
-
-</div>
-
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  
-  color: white;
-  font-family: sans-serif;
-  background: linear-gradient(-45deg, #ff6a00, #ee0979, #00c6ff, #0072ff);
-  background-size: 300% 300%;
-  animation: move 5s ease infinite;
-}
-@keyframes move {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-</style>
 </body>
 </html>
-
